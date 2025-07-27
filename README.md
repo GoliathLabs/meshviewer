@@ -27,18 +27,20 @@ Hint: You can start a development server with `npm run dev`
 
 ### Build and run using Docker
 
-Static local test instance:
+You have to copy `config.example.json` to `public/config.json`.
+
+Static local instance using `docker-compose`:
 
 ```bash
-docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node npm install
-docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node npm run build
-docker run -it --rm -v "$PWD/build":/usr/share/nginx/html -p 8080:80 --name nginx nginx
+docker compose build
+docker compose up -d
+xdg-open http://localhost:8080
 ```
 
-The map is reachable at [localhost:8080](http://localhost:8080).
-You have to copy `config.example.json` to `public/config.json`:
+Hint: You can also use `docker compose pull` for the latest released image
 
-Start a development environment:
+The map is reachable at [localhost:8080](http://localhost:8080).
+Start a development environment with hot-reload:
 
 ```bash
 docker run -it --rm --name meshviewer-dev \
